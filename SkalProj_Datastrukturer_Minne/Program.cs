@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.Metrics;
+using System.Reflection;
 
 namespace SkalProj_Datastrukturer_Minne
 {
@@ -10,6 +12,7 @@ namespace SkalProj_Datastrukturer_Minne
 
         private static List<string> list = new List<string>();
         private static Queue<string> queue = new Queue<string>();
+        private static Stack<string> stack = new Stack<string>();
 
         /// <summary>
         /// The main method, vill handle the menues for the program
@@ -226,6 +229,86 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+
+            //Implementera en ReverseText - metod som läser in en sträng från användaren och
+            //med hjälp av en stack vänder ordning på teckenföljden för att sedan skriva ut den
+            //omvända strängen till användaren.
+
+            bool programRun = true;
+            do
+            {
+                //Implementera en ReverseText - metod som läser in en sträng från användaren
+                Console.WriteLine("This method reverse your input with help of a stack and then pushes your reversed input into a new stack");
+                Console.WriteLine("\n0: Exit\n+: To push your input in a reversed word,input (+ or +Adam) \n-: to Pop/remove the  reversed word from the stack");
+                string input = Console.ReadLine();
+                char nav = input[0];//is the + or -
+                string value = input.Substring(1);
+                //Create a switch with cases to enqueue items or dequeue items
+                switch (nav)
+                {
+                    //'+': Add a person to the queue
+                    case '+':
+                        if (string.IsNullOrWhiteSpace(value))
+                        {
+                            Console.WriteLine("Input the name of person you want put on inside the queue: ");
+                            string textInput = Console.ReadLine();
+                            stack.Push(reverseText(textInput));
+                        }
+                        else
+                        {
+                            stack.Push(reverseText(value));
+                        }
+                        //Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
+                        PrintStack();
+
+                        break;
+                    //'-': Remove the at the front from the queue
+                    case '-':
+                        stack.Pop();
+                        PrintStack();
+                        break;
+                    case '0':
+                        programRun = false;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Input, please input + or -");
+                        break;
+                }
+
+
+            } while (programRun);
+        }
+
+        private static void PrintStack()
+        {
+            int i = stack.Count;
+            Console.WriteLine("------------Stack----------");
+            foreach (var item in stack)
+            {
+                Console.WriteLine($"{i--}: {item}");
+            }
+            Console.WriteLine("---------------------------");
+        }
+
+        private static string reverseText(string input)
+        {
+            //Use with help of a stack to reverse the order of the string
+            Stack myStack = new Stack();
+            foreach (var letter in input)
+            {
+                myStack.Push(letter);
+            }
+
+            var reversedWord = "";
+            while (myStack.Count > 0) 
+            {
+                reversedWord += myStack.Pop();
+            }
+
+            //Print the reversed string
+            Console.WriteLine($"reversed textinput: {reversedWord}");
+
+            return reversedWord;
         }
 
         static void CheckParanthesis()

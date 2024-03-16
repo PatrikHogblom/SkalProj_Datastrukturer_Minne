@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -8,6 +9,7 @@ namespace SkalProj_Datastrukturer_Minne
     {
 
         private static List<string> list = new List<string>();
+        private static Queue<string> queue = new Queue<string>();
 
         /// <summary>
         /// The main method, vill handle the menues for the program
@@ -156,11 +158,62 @@ namespace SkalProj_Datastrukturer_Minne
         /// </summary>
         static void ExamineQueue()
         {
-            /*
-             * Loop this method untill the user inputs something to exit to main menue.
-             * Create a switch with cases to enqueue items or dequeue items
-             * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
-            */
+            //Loop this method untill the user inputs something to exit to main menue.
+            bool programRun = true;
+            do
+            {
+                Console.WriteLine("\n0: Exit\n+: To enqueue a person (+ or +Adam) \n-: to deueue a person from queue");
+                string input = Console.ReadLine();
+                char nav = input[0];//is the + or -
+                string value = input.Substring(1);
+                //Create a switch with cases to enqueue items or dequeue items
+                switch (nav)
+                {
+                    //'+': Add a person to the queue
+                    case '+':
+                        if (string.IsNullOrWhiteSpace(value))
+                        {
+                            Console.WriteLine("Input the name of person you want put on inside the queue: ");
+                            string textInput = Console.ReadLine();
+                            queue.Enqueue(textInput);
+
+                        }
+                        else
+                        {
+                            queue.Enqueue(value);
+                        }
+                        //Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
+                        PrintQueue();
+
+                        break;
+                    //'-': Remove the at the front from the queue
+                    case '-':
+                        queue.Dequeue();
+                        PrintQueue();
+                        break;
+                    case '0':
+                        programRun = false;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Input, please input + or -");
+                        break;
+                }
+
+
+            } while (programRun);
+
+
+        }
+
+        private static void PrintQueue()
+        {
+            int i = 0;
+            Console.WriteLine("-----------Queue-----------");
+            foreach (var item in queue)
+            {
+                Console.WriteLine($"{++i}: {item}"); ;
+            }
+            Console.WriteLine("---------------------------");
         }
 
         /// <summary>

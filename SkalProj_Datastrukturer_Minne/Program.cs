@@ -29,6 +29,7 @@ namespace SkalProj_Datastrukturer_Minne
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
                     + "\n4. CheckParenthesis"
+                    + "\n5. RecursiveEven"
                     + "\n0. Exit the application");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
@@ -58,6 +59,19 @@ namespace SkalProj_Datastrukturer_Minne
                      * Extend the menu to include the recursive 
                      * and iterative exercises.
                      */
+                    case '5':
+                        Console.WriteLine("Which n:th even number do you want, input: ");
+                        int resultEven;
+                        int resultFibonacci;
+                        if (int.TryParse(Console.ReadLine(), out int n))
+                        {
+                            resultEven = RescursiveEven(n);
+                            resultFibonacci = RescursiveFibonacci(n);
+                            Console.WriteLine($"The {n}:th even number is {resultEven}");
+                            Console.WriteLine($"The Fibonacci sequence of n is {resultFibonacci}");
+
+                        }
+                        break;
                     case '0':
                         Environment.Exit(0);
                         break;
@@ -66,6 +80,24 @@ namespace SkalProj_Datastrukturer_Minne
                         break;
                 }
             }
+        }
+
+        private static int RescursiveFibonacci(int n)
+        {
+            if(n <= 1)
+            {
+                return n;
+            }
+            return RescursiveFibonacci(n-1) + RescursiveFibonacci(n-2);
+        }
+
+        private static int RescursiveEven(int n)
+        {
+           if(n == 1)
+           {
+                return 2;
+           }
+           return RescursiveEven(n-1) + 2;
         }
 
         /// <summary>

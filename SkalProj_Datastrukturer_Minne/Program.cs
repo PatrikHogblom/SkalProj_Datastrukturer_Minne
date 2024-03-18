@@ -319,7 +319,38 @@ namespace SkalProj_Datastrukturer_Minne
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
 
+            Stack<char> stackStarterParantheis = new Stack<char>();
+            Console.WriteLine("input: ");
+
+            string input = Console.ReadLine();
+
+            //checks if the parathesis are correctly formated
+            bool validFormat = true;
+
+            foreach (char letter in input)
+            {
+                if (letter == '{' || letter == '[' || letter == '(' )
+                {
+                    stackStarterParantheis.Push(letter);
+                }
+                else if(letter == '}' || letter == ']' || letter == ')')
+                {
+                    char topElement = stackStarterParantheis.Peek();
+                    if ((topElement == '(' && letter == ')') || (topElement == '{' && letter == '}') || (topElement == '[' && letter == ']'))
+                    {
+                        stackStarterParantheis.Pop();
+                    }
+                    else
+                    {
+                        validFormat = false;
+                    }
+                }
+            }
+
+            Console.WriteLine($"The format is: {(validFormat == true ? "Correctly Formatted\n" : "Incorrectly Formatted\n")}");
+
         }
+
     }
 }
 

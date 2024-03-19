@@ -214,7 +214,7 @@ namespace SkalProj_Datastrukturer_Minne
             do
             {
                 //Create a switch statement with cases '+' and '-'
-                Console.WriteLine("Input +/- or +Adam/-Adam: ");
+                Console.WriteLine("Input +/- or +Adam/-Adam to add to the list:\n0.Exit");
                 string input = Console.ReadLine();
                 char nav = input[0];//is the + or -
                 string value = input.Substring(1);

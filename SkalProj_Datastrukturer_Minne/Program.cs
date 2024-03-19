@@ -71,7 +71,7 @@ svar: se sida 1 på Ovning4_SkalProj\PappersPresentation_övning4.pdf.
 2. Implementera metoden ExamineQueue. Metoden ska simulera hur en kö fungerar genom att tillåta användaren att ställa element i kön (enqueue) och ta bort element 
 ur kön (dequeue). Använd Queue-klassen till hjälp för att implementera metoden. Simulera sedan ICA-kön med hjälp av ditt program. 
 
-Svar: Se ExamineQueue() på rad 292
+Svar: Se ExamineQueue() på rad 296
 
 Övning 3:
 
@@ -85,7 +85,7 @@ Svar: Se ExamineQueue() på rad 292
 2. Implementera en ReverseText-metod som läser in en sträng från användaren och med hjälp av en stack vänder ordning på tecken följden för att sedan skriva ut den 
    omvända strängen till användaren.
 
-   svar: se rad 355 för implemenationen av ExamineStack samt rad xx för implementationen av ReverseText
+   svar: se rad 359 för implemenationen av ExamineStack() samt rad 431 för implementationen av ReverseText
 
 Övning 4: 
 1. Skapa med hjälp av er nya kunskap funktionalitet för att kontrollera en välformad sträng på papper. Du ska använda dig av någon eller några av de datastrukturer vi 
@@ -96,17 +96,17 @@ Svar: Se ExamineQueue() på rad 292
 2. Implementera funktionaliteten i metoden CheckParentheses. Låt programmet läsa in en sträng från användaren och returnera ett svar som reflekterar huruvida 
    strängen är välformad eller ej. 
 
-   svar: se rad 446 för implementationen av CheckParentheses
+   svar: se rad 454 för implementationen av CheckParentheses()
 
 Övning 5: 
 1. Illustrera förloppen för RecursiveOdd(1), RecursiveOdd(3) och RecursiveOdd(5) på papper för att förstå den rekursiva loopen.
    svar: se sida 6 på Ovning4_SkalProj\PappersPresentation_övning4.pdf för illustration
 
 2. Skriv en RecursiveEven(int n) metod som rekursivt beräknar det n:te jämna talet.
-   svar: se rad 192 för implemenation av RescursiveEven()
+   svar: se rad 196 för implemenation av RescursiveEven()
 
 3. Implementera en rekursiv funktion för att beräkna tal i fibonaccisekvensen: (f(n) = f(n-1) + f(n-2))
-   svar: se rad 183 för implementation av RecursiveFibonacci()
+   svar: se rad 187 för implementation av RecursiveFibonacci()
 
  */
 
@@ -423,7 +423,11 @@ namespace SkalProj_Datastrukturer_Minne
             }
             Console.WriteLine("---------------------------");
         }
-
+        /// <summary>
+        /// Reverses the input string text using a stack and returns the reversed word 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns>reversedWord</returns>
         private static string reverseText(string input)
         {
             //Use with help of a stack to reverse the order of the string
